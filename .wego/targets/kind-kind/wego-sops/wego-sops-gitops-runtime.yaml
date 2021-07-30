@@ -1,0 +1,29 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: wego-sops
+  namespace: wego-system
+spec:
+  interval: 1m0s
+  path: ./
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: wego-sops
+  validation: client
+
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: wego-sops
+  namespace: wego-system
+spec:
+  interval: 30s
+  ref:
+    branch: main
+  secretRef:
+    name: weave-gitops-kind-kind-wego-sops
+  url: ssh://git@github.com/luisgj/wego-sops.git
+

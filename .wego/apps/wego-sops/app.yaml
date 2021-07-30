@@ -1,0 +1,14 @@
+---
+apiVersion: wego.weave.works/v1alpha1
+kind: Application
+metadata:
+  labels:
+    weave-gitops.weave.works/app-identifier: wego-d2c3dad57cea8c85233f23ce4def8bf1
+  name: wego-sops
+  namespace: wego-system
+spec:
+  branch: main
+  deployment_type: kustomize
+  path: ./
+  source_type: git
+  url: ssh://git@github.com/luisgj/wego-sops.git
